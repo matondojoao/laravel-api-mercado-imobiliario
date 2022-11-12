@@ -13,7 +13,7 @@ class CreateTableRealState extends Migration
      */
     public function up()
     {
-        Schema::create('real_state', function (Blueprint $table) {
+        Schema::create('real_states', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('description');
@@ -36,6 +36,6 @@ class CreateTableRealState extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('real_state');
+        Schema::dropIfExists('real_states');
     }
 }

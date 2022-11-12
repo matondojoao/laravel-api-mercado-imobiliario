@@ -17,7 +17,6 @@ class CreateTableRealStateCategories extends Migration
             $table->id();
             $table->foreignId('real_state_id')->constrained();
             $table->foreignId('category_id')->constrained();
-            $table->primary(array('real_state_id','category_id'));
             $table->timestamps();
         });
     }
