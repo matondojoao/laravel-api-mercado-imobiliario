@@ -21,4 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['prefix'=>'real-states'],function(){
    Route::get('/',[RealStateController::class,'index']);
    Route::post('/',[RealStateController::class,'store']);
+   Route::put('/{id}',[RealStateController::class,'update']);
 });

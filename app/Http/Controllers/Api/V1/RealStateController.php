@@ -35,8 +35,11 @@ class RealStateController extends Controller
                     'msg'=>'Imóvel cadastrado com sucesso'
                 ]
             ], 200);
-        }catch(\Exception $e){
-           return response()->json(['error'=>$e->getMessage()], 401);
+        }catch(\Throwable $th){
+
+            return response()->json(
+                ['erros'=> $th->getMessage()], 401
+             );
         }
     }
 
@@ -59,8 +62,22 @@ class RealStateController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    { 
+        
+      try {
+
+        $realstate=RealState::findOrFail($id)->update($request->all());
+
+        return response()->json([
+            'msg'=>'Imóvel atualizado com sucesso'
+        ], 200);
+
+      } catch (\Throwable $th) {
+
+       return response()->json(
+           ['erros'=> $th->getMessage()], 401
+        );
+      }
     }
 
     /**
