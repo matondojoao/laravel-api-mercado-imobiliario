@@ -27,8 +27,17 @@ class RealStateController extends Controller
      */
     public function store(Request $request)
     {
-        $realstates =new RealState();
-        return response()->json($request->all(),200);
+        $data = RealState::create($request->all());
+
+        try{
+             return response()->json([
+                'data'=>[
+                    'msg'=>'Imóvel cadastrado com sucesso'
+                ]
+            ], 200);
+        }catch(\Exception $e){
+           return response()->json(['error'=>$e->getMessage()], 401);
+        }
     }
 
     /**
@@ -39,7 +48,7 @@ class RealStateController extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**
