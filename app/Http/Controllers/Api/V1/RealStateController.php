@@ -51,7 +51,18 @@ class RealStateController extends Controller
      */
     public function show($id)
     {
-       
+       $realstate=RealState::findOrFail($id);
+
+       try {
+
+        return response()->json($realstate, 200);
+
+       } catch (\Throwable $th) {
+
+        return response()->json(
+                ['erros'=> $th->getMessage()], 401
+        );
+       }
     }
 
     /**
@@ -63,7 +74,7 @@ class RealStateController extends Controller
      */
     public function update(Request $request, $id)
     { 
-        
+
       try {
 
         $realstate=RealState::findOrFail($id)->update($request->all());
@@ -88,6 +99,22 @@ class RealStateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+       $realstate=RealState::findOrFail($id);
+
+       try {
+        
+        $realstate->delete();
+
+        return response()->json([
+            'msg'=>'Imóvel excluído com sucesso'
+        ], 200);
+
+       } catch (\Throwable $th) {
+
+        return response()->json(
+                ['erros'=> $th->getMessage()], 401
+        );
+       }
     }
 }

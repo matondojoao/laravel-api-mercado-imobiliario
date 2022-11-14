@@ -14,12 +14,10 @@ use App\Http\Controllers\Api\V1\RealStateController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::group(['prefix'=>'real-states'],function(){
    Route::get('/',[RealStateController::class,'index']);
    Route::post('/',[RealStateController::class,'store']);
+   Route::get('/{id}',[RealStateController::class,'show']);
    Route::put('/{id}',[RealStateController::class,'update']);
+   Route::delete('/{id}',[RealStateController::class,'destroy']);
 });
