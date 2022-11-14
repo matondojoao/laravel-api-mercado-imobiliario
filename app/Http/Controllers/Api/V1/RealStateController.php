@@ -27,7 +27,8 @@ class RealStateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $realstates =new RealState();
+        return response()->json($request->all(),200);
     }
 
     /**
