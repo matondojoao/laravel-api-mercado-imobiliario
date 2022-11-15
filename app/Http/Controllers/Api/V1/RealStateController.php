@@ -32,10 +32,10 @@ class RealStateController extends Controller
         try{
             $realstate = RealState::create($data);
 
-            if(isset($data['categories']) && count($data['categories'])) {
+            if(isset($data['categories']) && count($data['categories'])){
 
-    			$realstate->categories()->sync($data['categories']);
-		    }
+                $realstate->categories()->sync($data['categories']);
+            }
 
              return response()->json([
                 'data'=>[

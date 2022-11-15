@@ -35,6 +35,7 @@ Route::group(['prefix'=>'users'],function(){
 Route::group(['prefix'=>'categories'],function(){
    Route::get('/',[CategoryController::class,'index']);
    Route::post('/',[CategoryController::class,'store']);
+   Route::get('/{id}/real-states',[CategoryController::class,'realstates']);
    Route::get('/{id}',[CategoryController::class,'show']);
    Route::put('/{id}',[CategoryController::class,'update']);
    Route::delete('/{id}',[CategoryController::class,'destroy']);
