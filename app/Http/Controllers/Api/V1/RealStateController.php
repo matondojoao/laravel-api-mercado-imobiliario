@@ -28,9 +28,9 @@ class RealStateController extends Controller
      */
     public function store(RealStateRequest $request)
     {
-        $data = RealState::create($request->all());
-
         try{
+            $data = RealState::create($request->all());
+
              return response()->json([
                 'data'=>[
                     'msg'=>'Imóvel cadastrado com sucesso'
@@ -53,10 +53,11 @@ class RealStateController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-       $realstate=RealState::findOrFail($id);
+    {    
 
        try {
+
+        $realstate=RealState::findOrFail($id);
 
         return response()->json($realstate, 200);
 
@@ -106,10 +107,9 @@ class RealStateController extends Controller
      */
     public function destroy($id)
     {
-        
-       $realstate=RealState::findOrFail($id);
 
        try {
+        $realstate=RealState::findOrFail($id);
 
         $realstate->delete();
 
