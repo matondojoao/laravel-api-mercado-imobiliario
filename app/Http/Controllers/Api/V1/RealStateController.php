@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\RealState;
 use App\Http\Requests\RealStateRequest;
+use App\Api\ApiMessages;
 
 class RealStateController extends Controller
 {
@@ -37,9 +38,11 @@ class RealStateController extends Controller
             ], 200);
         }catch(\Throwable $th){
 
+            $message=new ApiMessages($th->getMessage());
+
             return response()->json(
-                ['erros'=> $th->getMessage()], 401
-             );
+                $message->getMessage(), 401
+            );
         }
     }
 
@@ -59,8 +62,10 @@ class RealStateController extends Controller
 
        } catch (\Throwable $th) {
 
+        $message=new ApiMessages($th->getMessage());
+
         return response()->json(
-                ['erros'=> $th->getMessage()], 401
+            $message->getMessage(), 401
         );
        }
     }
@@ -85,8 +90,10 @@ class RealStateController extends Controller
 
       } catch (\Throwable $th) {
 
-       return response()->json(
-           ['erros'=> $th->getMessage()], 401
+        $message=new ApiMessages($th->getMessage());
+
+        return response()->json(
+            $message->getMessage(), 401
         );
       }
     }
@@ -112,8 +119,10 @@ class RealStateController extends Controller
 
        } catch (\Throwable $th) {
 
+        $message=new ApiMessages($th->getMessage());
+        
         return response()->json(
-                ['erros'=> $th->getMessage()], 401
+            $message->getMessage(), 401
         );
        }
     }
