@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\RealState;
+use App\Http\Requests\RealStateRequest;
 
 class RealStateController extends Controller
 {
@@ -25,7 +25,7 @@ class RealStateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RealStateRequest $request)
     {
         $data = RealState::create($request->all());
 
@@ -72,7 +72,7 @@ class RealStateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RealStateRequest $request, $id)
     { 
 
       try {
@@ -103,7 +103,7 @@ class RealStateController extends Controller
        $realstate=RealState::findOrFail($id);
 
        try {
-        
+
         $realstate->delete();
 
         return response()->json([
