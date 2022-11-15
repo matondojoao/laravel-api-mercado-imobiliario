@@ -28,14 +28,21 @@ class RealStateController extends Controller
      */
     public function store(RealStateRequest $request)
     {
+        $data=$request->all();
         try{
-            $data = RealState::create($request->all());
+            $realstate = RealState::create($data);
+
+            if(isset($data['categories']) && count($data['categories'])) {
+
+    			$realstate->categories()->sync($data['categories']);
+		    }
 
              return response()->json([
                 'data'=>[
                     'msg'=>'Imóvel cadastrado com sucesso'
                 ]
             ], 200);
+
         }catch(\Throwable $th){
 
             $message=new ApiMessages($th->getMessage());
@@ -80,12 +87,19 @@ class RealStateController extends Controller
      */
     public function update(RealStateRequest $request, $id)
     { 
+     $data=$request->all();
 
       try {
 
-        $realstate=RealState::findOrFail($id)->update($request->all());
+        $realstate=RealState::findOrFail($id)->update($data);
+
+         if(isset($data['categories']) && count($data['categories'])) {
+                
+    			$realstate->categories()->sync($data['categories']);
+		}
 
         return response()->json([
+            
             'msg'=>'Imóvel atualizado com sucesso'
         ], 200);
 
