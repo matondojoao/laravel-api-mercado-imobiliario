@@ -79,7 +79,8 @@ class UserController extends Controller
     public function show($id)
     {
         try {
-            $user=User::findOrFail($id);
+            
+            $user=User::with('profile')->findOrFail($id);
 
             return response()->json($user, 200);
 
@@ -109,11 +110,20 @@ class UserController extends Controller
         else{
             unset($data['password']);
         }
+        Validator::make($data, [
+            'profile.phone' => 'required',
+		    'profile.mobile_phone' => 'required'
+           ])->validate();
 
         try {
+        
+            $profile = $data['profile'];
+	    	$profile['social_networks'] = serialize($profile['social_networks']);
 
         $user=User::findOrFail($id)->update($data);
         
+        $user->profile()->update($profile);
+
         return response()->json([
 
             'msg'=>'Usuário atualizado com sucesso'
