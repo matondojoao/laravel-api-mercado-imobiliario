@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use App\Api\ApiMessages;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -29,6 +30,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $use= new User();
         $data=$request->all();
 
         $data['password']=Hash::make($data['password']);
@@ -39,10 +41,23 @@ class UserController extends Controller
 
             return response()->json($message->getMessage(), 401);
         }
+        
+       Validator::make($data, [
+        'phone'=>'required',
+        'mobile_phone'=>'required'
+       ])->validate();
+
        try {
 
         $user=User::create($data);
-        
+
+        $user->profile()->create(
+            [
+                'phone'=>$data['phone'],
+                'mobile_phone'=>$data['mobile_phone']
+            ]
+        );
+
         return response()->json([
             'msg'=>'Usuário criado com sucesso'
         ], 200);
