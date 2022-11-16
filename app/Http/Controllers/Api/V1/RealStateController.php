@@ -29,12 +29,25 @@ class RealStateController extends Controller
     public function store(RealStateRequest $request)
     {
         $data=$request->all();
+
+        $images=$request->file('images');
+
         try{
             $realstate = RealState::create($data);
 
             if(isset($data['categories']) && count($data['categories'])){
 
                 $realstate->categories()->sync($data['categories']);
+            }
+
+            if($images){
+                $imagesUploaded=[];
+
+                foreach($images as $image){
+                    $path=$image->store('images','public');
+
+                    $imagesUploaded[]=$path;
+                }
             }
 
              return response()->json([
