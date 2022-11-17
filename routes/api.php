@@ -20,7 +20,7 @@ Route::group(['prefix'=>'real-states'],function(){
    Route::get('/',[RealStateController::class,'index']);
    Route::post('/',[RealStateController::class,'store']);
    Route::get('/{id}',[RealStateController::class,'show']);
-   Route::put('/{id}',[RealStateController::class,'update']);
+   Route::post('/{id}',[RealStateController::class,'update']);
    Route::delete('/{id}',[RealStateController::class,'destroy']);
 });
 

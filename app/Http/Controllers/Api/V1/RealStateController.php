@@ -102,16 +102,29 @@ class RealStateController extends Controller
      */
     public function update(RealStateRequest $request, $id)
     { 
+
      $data=$request->all();
+     $images=$request->file('images');
 
       try {
 
         $realstate=RealState::findOrFail($id)->update($data);
 
-         if(isset($data['categories']) && count($data['categories'])) {
-                
-    			$realstate->categories()->sync($data['categories']);
-		}
+        if(isset($data['categories']) && count($data['categories'])) {
+            $realstate->categories()->sync($data['categories']);
+        }
+
+        if($images){
+
+            $imageUploaded=[];
+
+            foreach($images as $image)
+            {
+             $path=$image->store('images','public');
+             $imageUploaded[]=['photo'=>$path, 'is_thumb'=>false];
+            }
+            $realstate->photos()->createMany($imageUploaded);
+         }
 
         return response()->json([
             
