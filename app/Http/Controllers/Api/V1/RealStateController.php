@@ -33,23 +33,23 @@ class RealStateController extends Controller
         $images=$request->file('images');
 
         try{
+            
             $realstate = RealState::create($data);
 
             if(isset($data['categories']) && count($data['categories'])){
-
                 $realstate->categories()->sync($data['categories']);
             }
 
             if($images){
-                $imagesUploaded=[];
 
-                foreach($images as $image){
-                    $path=$image->store('images','public');
+               $imageUploaded=[];
 
-                    $imagesUploaded[]=['photo'=>$path,'is_thumb'=>false];
-                }
-
-                $realstate->photos()->createMany($imagesUploaded);
+               foreach($images as $image)
+               {
+                $path=$image->store('images','public');
+                $imageUploaded[]=['photo'=>$path, 'is_thumb'=>false];
+               }
+               $realstate->photos()->createMany($imageUploaded);
             }
 
              return response()->json([
