@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\RealStatePhoto;
+use Illuminate\Support\Facades\Storage;
+
+use App\Api\ApiMessages;
 
 class RealStatePhotoController extends Controller
 {
@@ -12,53 +16,45 @@ class RealStatePhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function setTumb($photoId ,$realstateId)
     {
-        //
-    }
+       try {
+          $photo=RealStatePhoto::where('real_state_id',$realstateId)
+                 ->where('is_thumb', true)->first();
+          
+          if($photo->count())
+              $photo->update(['is_thumb'=>false]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+          $photo=RealStatePhoto::find($photoId)->update(['is_thumb'=>true]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+          return response()->json([
+            'msg'=>'Tumb atualizada com sucesso'
+          ], 200);
+          
+       } catch (\Throwable $th) {
+          $message=new ApiMessages($th->getMessage());
+          return response()->json([$message->getMessage()], 401);
+       }
     }
+    public function remove($photoId)
+    {
+        try {
+            $photo=RealStatePhoto::find($photoId);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+            if($photo){
+               Storage::disk('public')->delete($photo->photo);
+               $photo->delete();
+            }
+  
+            return response()->json([
+              'msg'=>'Foto excluída com sucesso'
+            ], 200);
+            
+         } catch (\Throwable $th) {
+            $message=new ApiMessages($th->getMessage());
+            return response()->json([$message->getMessage()], 401);
+         }
     }
+    
 }

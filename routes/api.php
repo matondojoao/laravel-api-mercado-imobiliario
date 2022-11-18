@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\RealStateController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\CategoryController;
+use App\Http\Controllers\Api\V1\RealStatePhotoController;
 
 
 Route::group(['prefix'=>'real-states'],function(){
@@ -30,4 +31,9 @@ Route::group(['prefix'=>'categories'],function(){
    Route::get('/{id}',[CategoryController::class,'show']);
    Route::put('/{id}',[CategoryController::class,'update']);
    Route::delete('/{id}',[CategoryController::class,'destroy']);
+});
+
+Route::group(['prefix'=>'photos'],function(){
+   Route::post('/settumb/{id}/{id}',[RealStatePhotoController::class,'setTumb']);
+   Route::delete('/remove/{id}',[RealStatePhotoController::class,'remove']);
 });
