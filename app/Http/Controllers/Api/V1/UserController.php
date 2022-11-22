@@ -50,7 +50,6 @@ class UserController extends Controller
        try {
 
         $user=User::create($data);
-
         $user->profile()->create(
             [
                 'phone'=>$data['phone'],
