@@ -109,11 +109,12 @@ sequelize.sync({ force: true }).then(() => {
 
 ## Métodos
 
-### Cadastro de usuário
+### Cadastro de imóvel
 
 | Método   |           Rota             |
 | -------- |:--------------------------:|
-| POST     | /api/usuarios/cadastro     |  
+| POST     | /api/realstate/            |  
+
 
 ##### Requisição
 
