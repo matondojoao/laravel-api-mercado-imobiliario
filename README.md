@@ -119,7 +119,7 @@ sequelize.sync({ force: true }).then(() => {
 
 | Método   |           Rota             |
 | -------- |:--------------------------:|
-| DELETE     | /api/realstate/{id}        | 
+| DELETE     | /api/realstate/{id}      | 
 
 
 ##### Requisição
@@ -511,5 +511,6 @@ jest --env node
 ### Contato
 Para mais informações entre em contato:
 
-* Email: rafael.j.ferreira@hotmail.com
-* LinkedIn: <https://www.linkedin.com/in/rafael-juliano-ferreira-991084169>
+* Email: matondojoaokitemoco@gmail.com
+* LinkedIn: <https://www.linkedin.com/in/matondojoao>
+* Facebook: <https://web.facebook.com/blogmatondojoao>
