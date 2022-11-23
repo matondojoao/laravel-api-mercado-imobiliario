@@ -16,7 +16,7 @@ class RealStateController extends Controller
      */
     public function index()
     {
-        $realstates=RealState::paginate(10);
+        $realstates=RealState::paginate(10)->with('photos')->get();
         return response()->json($realstates);
     }
 
