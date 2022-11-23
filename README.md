@@ -115,6 +115,12 @@ sequelize.sync({ force: true }).then(() => {
 | -------- |:--------------------------:|
 | POST     | /api/realstate/            |  
 
+### Exclusão de imóvel
+
+| Método   |           Rota             |
+| -------- |:--------------------------:|
+| DELETE     | /api/realstate/{id}        | 
+
 
 ##### Requisição
 
