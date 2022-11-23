@@ -34,6 +34,6 @@ Route::group(['prefix'=>'categories'],function(){
 });
 
 Route::group(['prefix'=>'photos'],function(){
-   Route::post('/settumb/{id}/{id}',[RealStatePhotoController::class,'setTumb']);
+   Route::post('/set-tumb/{photoId}/{realstateId}',[RealStatePhotoController::class,'setTumb']);
    Route::delete('/remove/{id}',[RealStatePhotoController::class,'remove']);
 });
