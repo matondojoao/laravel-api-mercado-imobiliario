@@ -16,7 +16,7 @@ class RealStateController extends Controller
      */
     public function index()
     {
-        $realstates=RealState::paginate(10)->with('photos')->get();
+        $realstates=RealState::paginate(10);
         return response()->json($realstates);
     }
 
@@ -79,7 +79,7 @@ class RealStateController extends Controller
 
        try {
 
-        $realstate=RealState::findOrFail($id);
+        $realstate=RealState::with('photos')->findOrFail($id);
 
         return response()->json($realstate, 200);
 
