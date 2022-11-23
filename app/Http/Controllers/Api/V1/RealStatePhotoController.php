@@ -21,10 +21,10 @@ class RealStatePhotoController extends Controller
     {
        try {
           $photo=RealStatePhoto::where('real_state_id',$realstateId)
-                 ->where('is_thumb', true)->first();
+                 ->where('is_thumb', true);
           
           if($photo->count())
-              $photo->update(['is_thumb'=>false]);
+              $photo->update(['is_thumb'=>false])->first();
 
           $photo=RealStatePhoto::find($photoId)->update(['is_thumb'=>true]);
 
