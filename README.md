@@ -22,8 +22,8 @@
 Após baixar os arquivos, será necessário crir um arquivo .env onde serão configuradas as variávies de ambiente.  
 Utilize o seguinte formato:  
 
-APP_NAME=Laravel
-APP_ENV=local
+* **APP_NAME=Laravel**
+* **APP_ENV=local**
 APP_KEY=
 APP_DEBUG=true
 APP_URL=http://localhost
