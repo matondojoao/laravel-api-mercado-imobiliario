@@ -131,7 +131,8 @@ class CategoryController extends Controller
 
            $message= new ApiMessages($th->getMessage());
 
-           return response()->json([$th->getMessage()], 401);
+           return response()->json([$th->getMessage()
+		   ], 401);
         }
     }
 }
