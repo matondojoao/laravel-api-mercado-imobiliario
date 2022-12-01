@@ -11,7 +11,7 @@ use App\Models\RealState;
 use App\Models\UserProfile;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
