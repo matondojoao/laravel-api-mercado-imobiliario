@@ -54,4 +54,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasOne(UserProfile::class);
     }
+
+    public function getJWTIdentifier()
+    {
+       return $this-getKey();
+    }
 }
