@@ -33,7 +33,7 @@ class RealStateController extends Controller
         $images=$request->file('images');
 
         try{
-            
+
             $realstate = RealState::create($data);
 
             if(isset($data['categories']) && count($data['categories'])){
@@ -75,7 +75,7 @@ class RealStateController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {    
+    {
 
        try {
 
@@ -101,7 +101,7 @@ class RealStateController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(RealStateRequest $request, $id)
-    { 
+    {
 
      $data=$request->all();
      $images=$request->file('images');
@@ -127,7 +127,7 @@ class RealStateController extends Controller
          }
 
         return response()->json([
-            
+
             'msg'=>'Imóvel atualizado com sucesso'
         ], 200);
 
@@ -162,7 +162,7 @@ class RealStateController extends Controller
        } catch (\Throwable $th) {
 
         $message=new ApiMessages($th->getMessage());
-        
+
         return response()->json(
             $message->getMessage(), 401
         );
