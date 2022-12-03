@@ -6,7 +6,11 @@ use App\Http\Controllers\Api\V1\RealStateController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\RealStatePhotoController;
+use App\Http\Controllers\Api\V1\Auth\LoginJWTController;
 
+Route::group(['prefix'=>'auth'],function(){
+    Route::put('/login',[LoginJWTController::class,'login']);
+});
 
 Route::group(['prefix'=>'real-states'],function(){
    Route::get('/',[RealStateController::class,'index']);
@@ -37,3 +41,5 @@ Route::group(['prefix'=>'photos'],function(){
    Route::put('/set-tumb/{photoId}/{realstateId}',[RealStatePhotoController::class,'setTumb']);
    Route::delete('/remove/{id}',[RealStatePhotoController::class,'remove']);
 });
+
+
