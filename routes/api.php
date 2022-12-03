@@ -20,15 +20,15 @@ use App\Http\Controllers\Api\V1\Auth\LoginJWTController;
 */
 
 Route::group(['prefix'=>'auth'],function(){
-    Route::put('/login',[LoginJWTController::class,'login']);
+    Route::post('/login',[LoginJWTController::class,'login'])->name('login');
 });
 
 Route::group(['prefix'=>'real-states'],function(){
-   Route::get('/',[RealStateController::class,'index']);
-   Route::post('/',[RealStateController::class,'store']);
-   Route::get('/{id}',[RealStateController::class,'show']);
-   Route::put('/{id}',[RealStateController::class,'update']);
-   Route::delete('/{id}',[RealStateController::class,'destroy']);
+   Route::get('/',[RealStateController::class,'index'])->name('real-states');
+   Route::post('/',[RealStateController::class,'store'])->name('real-states.store');
+   Route::get('/{id}',[RealStateController::class,'show'])->name('real-states.show');;
+   Route::put('/{id}',[RealStateController::class,'update'])->name('real-states.update');;
+   Route::delete('/{id}',[RealStateController::class,'destroy'])->name('real-states.destroy');;
 });
 
 Route::group(['prefix'=>'users'],function(){
