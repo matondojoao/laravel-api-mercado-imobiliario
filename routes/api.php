@@ -20,7 +20,8 @@ use App\Http\Controllers\Api\V1\Auth\LoginJWTController;
 */
 
 Route::group(['prefix'=>'auth'],function(){
-    Route::post('/login',[LoginJWTController::class,'login'])->name('login')->name('auth.login');
+    Route::post('/login',[LoginJWTController::class,'login'])->name('auth.login');
+    Route::get('/logout',[LoginJWTController::class,'logout'])->name('auth.logout');
 });
 
 Route::group(['prefix'=>'real-states'],function(){

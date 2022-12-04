@@ -21,4 +21,11 @@ class LoginJWTController extends Controller
             'token'=>$token,
         ], 200);
     }
+
+    public function logout()
+    {
+        Auth('api')->logout();
+
+        return response()->json(['message'=>'Logout sucessfully'],200);
+    }
 }
