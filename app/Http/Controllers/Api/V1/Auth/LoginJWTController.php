@@ -28,4 +28,9 @@ class LoginJWTController extends Controller
 
         return response()->json(['message'=>'Logout sucessfully'],200);
     }
+
+    public function refresh()
+    {
+        $token=Auth('api')->refresh();
+    }
 }
