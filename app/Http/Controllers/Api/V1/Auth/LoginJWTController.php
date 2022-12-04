@@ -32,5 +32,9 @@ class LoginJWTController extends Controller
     public function refresh()
     {
         $token=Auth('api')->refresh();
+
+        return response()->json([
+            'token'=>$token,
+        ], 200);
     }
 }

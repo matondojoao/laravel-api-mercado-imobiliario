@@ -22,6 +22,7 @@ use App\Http\Controllers\Api\V1\Auth\LoginJWTController;
 Route::group(['prefix'=>'auth'],function(){
     Route::post('/login',[LoginJWTController::class,'login'])->name('auth.login');
     Route::get('/logout',[LoginJWTController::class,'logout'])->name('auth.logout');
+    Route::get('/refresh',[LoginJWTController::class,'refresh'])->name('auth.refresh');
 });
 
 Route::group(['prefix'=>'real-states'],function(){
