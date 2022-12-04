@@ -13,13 +13,12 @@ class LoginJWTController extends Controller
     {
         $credentials=$request->all('email','password');
 
-        if(!$token= Auth('api')->attempt($credentials)){
-           $message=new ApiMessages('Unauthorized');
-           return response()->json([$message->getMessage()], 401);
+        if(! $token=Auth('api')->attempt($credentials)){
+              $message=new ApiMessages('Unauthorized');
+              return response()->json([$message->getMessage()], 401);
         }
-
         return response()->json([
-            'token'=>$token
-        ]);
+            'token'=>$token,
+        ], 200);
     }
 }
