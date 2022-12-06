@@ -11,6 +11,11 @@ class LoginJWTController extends Controller
 {
     public function login(Request $request)
     {
+        $request->validate([
+            'email'=>'required|email|string',
+            'password'=>'required'
+        ]);
+
         $credentials=$request->all('email','password');
 
         if(! $token=Auth('api')->attempt($credentials)){
