@@ -34,6 +34,7 @@ class RealStateController extends Controller
 
         try{
 
+            $data['user_id']=Auth('api')->user()->id;
             $realstate = RealState::create($data);
 
             if(isset($data['categories']) && count($data['categories'])){
