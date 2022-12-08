@@ -31,7 +31,7 @@ class LoginJWTController extends Controller
     {
         Auth('api')->logout();
 
-        return response()->json(['message'=>'Logout sucessfully'],200);
+        return response()->json(['message'=>'Logout successfully'],200);
     }
 
     public function refresh()

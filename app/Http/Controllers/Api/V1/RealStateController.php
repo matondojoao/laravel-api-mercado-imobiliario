@@ -16,8 +16,8 @@ class RealStateController extends Controller
      */
     public function index()
     {
-        $realstates=RealState::paginate(10);
-        return response()->json($realstates);
+        $realstates=Auth('api')->User()->real_state;
+        return response()->json($realstates, 200);
     }
 
     /**
