@@ -109,7 +109,7 @@ class RealStateController extends Controller
 
       try {
 
-        $realstate=RealState::findOrFail($id)->update($data);
+        $realstate=Auth('api')->user()->real_state()->findOrFail($id)->update($data);
 
         if(isset($data['categories']) && count($data['categories'])) {
             $realstate->categories()->sync($data['categories']);
