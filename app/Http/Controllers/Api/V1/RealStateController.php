@@ -152,7 +152,7 @@ class RealStateController extends Controller
     {
 
        try {
-        $realstate=RealState::findOrFail($id);
+        $realstate=Auth('api')->User()->real_state()->findOrFail($id);
 
         $realstate->delete();
 
