@@ -79,7 +79,7 @@ class RealStateController extends Controller
 
        try {
 
-        $realstate=RealState::with('photos')->findOrFail($id);
+        $realstate=auth('api')->user()->real_state()->with('photos')->findOrFail($id);
 
         return response()->json($realstate, 200);
 
