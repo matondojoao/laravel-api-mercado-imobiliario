@@ -15,6 +15,10 @@ class CreateTableStates extends Migration
     {
         Schema::create('states', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('slug');
+            $table->string('initials');
+            $table->foreignId('country_id')->constrained();
             $table->timestamps();
         });
     }
