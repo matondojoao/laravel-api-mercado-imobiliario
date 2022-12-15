@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\RealStatePhotoController;
 use App\Http\Controllers\Api\V1\Auth\LoginJWTController;
+use App\Http\Controllers\Api\V1\RealStateSearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,10 @@ Route::group(['prefix'=>'categories'],function(){
 Route::group(['prefix'=>'photos','middleware'=>'jwt.auth'],function(){
    Route::put('/set-tumb/{photoId}/{realstateId}',[RealStatePhotoController::class,'setTumb'])->name('photos.set-tumb');
    Route::delete('/remove/{id}',[RealStatePhotoController::class,'remove'])->name('photos.remove');
+});
+
+Route::group(['prefix'=>'search'],function(){
+   Route::get('/',[RealStateSearchController::class,'index'])->name('search');
 });
 
 
