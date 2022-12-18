@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\RealStatePhoto;
+use App\Model\Address;
 
 class RealState extends Model
 {
     use HasFactory;
-     
+
     protected $fillable=[
         'title','description','content',
         'price','bathrooms','bedrooms',
@@ -26,9 +27,12 @@ class RealState extends Model
     public function categories(){
         return $this->belongsToMany(Category::class,'real_state_categories');
     }
-    
+
     public function photos(){
         return $this->hasMany(RealStatePhoto::class);
+    }
+    public function Addresses(){
+        return $this->hasMany(Address::class);
     }
 
 }
