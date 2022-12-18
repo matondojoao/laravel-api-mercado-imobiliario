@@ -19,7 +19,7 @@ class CreateTableAddresses extends Migration
             $table->integer('number');
             $table->string('district');
             $table->string('complement')->nullable();
-            $table->foreignId('state_id')->constrained();
+            $table->foreignId('city_id')->constrained();
             $table->timestamps();
         });
     }

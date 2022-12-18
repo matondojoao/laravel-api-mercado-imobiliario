@@ -34,7 +34,7 @@ Route::group(['prefix'=>'real-states'],function(){
    Route::delete('/{id}',[RealStateController::class,'destroy'])->name('real-states.destroy')->middleware('jwt.auth');
 });
 
-Route::group(['prefix'=>'users','middleware'=>'jwt.auth'],function(){
+Route::group(['prefix'=>'users'],function(){
    Route::get('/',[UserController::class,'index'])->name('users.index');
    Route::post('/',[UserController::class,'store'])->name('users.store');
    Route::get('/{id}',[UserController::class,'show'])->name('users.show');
