@@ -32,7 +32,7 @@ class RealState extends Model
         return $this->hasMany(RealStatePhoto::class);
     }
     public function Addresses(){
-        return $this->hasMany(Address::class);
+        return $this->belongsTo(Address::class);
     }
 
 }

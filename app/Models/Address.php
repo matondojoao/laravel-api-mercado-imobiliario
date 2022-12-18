@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\City;
+use App\Models\RealState;
 
 class Address extends Model
 {
@@ -12,5 +13,8 @@ class Address extends Model
 
     public function City(){
         return $this->belongsTo(City::class);
+    }
+    public function realstate(){
+        return $this->hasMany(RealState::class);
     }
 }
