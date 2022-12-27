@@ -19,16 +19,7 @@ class RealStateController extends Controller
     public function index(Request $request)
     {
        $realstates=Auth('api')->User()->real_state;
-
-       /*$realstates=RealState::all();*/
-
-      /*if($request->has('fields')){
-        $fields=$request->get('fields');
-        $realstates=$realstates->selectRaw('name');
-      }*/
-
-      //return response()->json($realstates);
-      return new RealStateResource($realstates);
+       return response()->json($realstates);
     }
 
     /**
