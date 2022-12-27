@@ -15,7 +15,7 @@ class RealStateResource extends JsonResource
     public function toArray($request)
     {
         return[
-            'data'=>$this->collection
+            'title'=>$this->title
         ];
     }
 }

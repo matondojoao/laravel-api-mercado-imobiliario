@@ -5,31 +5,25 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RealState;
+use App\Http\Resources\RealStateResource;
 
 class RealStateSearchController extends Controller
 {
 
     public function index(Request $request)
     {
-       $RealState=new RealState();
+       $RealState= RealState::all();
 
-       if($request->has('conditions')){
-        $expressions=explode(';',$request->get('conditions'));
-
-       foreach($expressions as $e){
-          $exp=explode(':',$e);
-          $RealState=$RealState->where($exp[0],$exp[1],$exp[2]);
-         }
-       }
-       if($request->has('fields')){
-        $fields=$request->get('fields');
+       /*if($request->has('fields')){
+       $fields=$request->get('fields');
         $RealState=$RealState->selectRaw($fields);
-       }
-        $RealState=RealState::paginate(10);
-        return response()->json($RealState, 200);
+       }*/
+
+        //$RealState=RealState::paginate(10);
+        return new RealStateResource($RealState);
     }
     public function show($id)
     {
-        //
+
     }
 }
