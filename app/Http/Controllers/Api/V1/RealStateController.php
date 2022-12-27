@@ -22,12 +22,13 @@ class RealStateController extends Controller
 
        /*$realstates=RealState::all();*/
 
-      if($request->has('fields')){
+      /*if($request->has('fields')){
         $fields=$request->get('fields');
         $realstates=$realstates->selectRaw('name');
-      }
+      }*/
 
-        return new RealStateResource($realstates);
+      //return response()->json($realstates);
+      return new RealStateResource($realstates);
     }
 
     /**
