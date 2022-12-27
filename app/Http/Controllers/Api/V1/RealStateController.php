@@ -7,6 +7,7 @@ use App\Models\RealState;
 use App\Http\Requests\RealStateRequest;
 use App\Api\ApiMessages;
 use Illuminate\Http\Request;
+use App\Http\Resources\RealStateResource;
 
 class RealStateController extends Controller
 {
@@ -17,12 +18,16 @@ class RealStateController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has('fields')){
-            $fields=$request->get('fields');
-            return response()->json($fields);
-        }
-        $realstates=Auth('api')->User()->real_state;
-        return response()->json($realstates, 200);
+       $realstates=Auth('api')->User()->real_state;
+
+       /*$realstates=RealState::all();*/
+
+      if($request->has('fields')){
+        $fields=$request->get('fields');
+        $realstates=$realstates->selectRaw('name');
+      }
+
+        return new RealStateResource($realstates);
     }
 
     /**
