@@ -13,13 +13,20 @@ class RealState extends Model
 {
     use HasFactory;
 
+    protected $appends=['links'];
+
     protected $fillable=[
         'title','description','content',
         'price','bathrooms','bedrooms',
         'property_area','total_property_area',
         'slug','user_id'
     ];
-
+    public function getLinksAttribute(){
+        return [
+			'href' => route('real-states.show', ['id' => $this->id]),
+			'rel'  => 'Imóveis'
+		];
+    }
     public function user(){
         return $this->belongsTo(User::class);
     }

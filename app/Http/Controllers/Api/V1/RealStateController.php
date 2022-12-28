@@ -16,7 +16,7 @@ class RealStateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
        $realstates=Auth('api')->User()->real_state;
        return response()->json($realstates);

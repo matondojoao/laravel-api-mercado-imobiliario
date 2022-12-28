@@ -10,17 +10,10 @@ use App\Http\Resources\RealStateResource;
 class RealStateSearchController extends Controller
 {
 
-    public function index(Request $request)
+    public function index()
     {
        $RealState= RealState::all();
-
-       /*if($request->has('fields')){
-       $fields=$request->get('fields');
-        $RealState=$RealState->selectRaw($fields);
-       }*/
-
-        //$RealState=RealState::paginate(10);
-        return new RealStateResource($RealState);
+       return response()->json($RealState);
     }
     public function show($id)
     {
